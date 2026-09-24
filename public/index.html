@@ -1,1 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="PiNexusCommerce Cloud - AI-powered global commerce discovery and research gateway."
+  >
+
+  <title>PiNexusCommerce Cloud</title>
+
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+  <header class="site-header">
+
+    <div class="brand">
+      <div class="brand-logo">π</div>
+
+      <div class="brand-text">
+        <h1>PiNexusCommerce</h1>
+        <span>Global Commerce Cloud</span>
+      </div>
+    </div>
+
+    <div class="header-status">
+      <span class="status-dot"></span>
+      <span>AI Commerce Gateway</span>
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       MAIN APPLICATION
+  ========================== -->
+  <main class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+
+      <div class="hero-badge">
+        🌍 Global • AI-Powered • Pi Ecosystem
+      </div>
+
+      <h2>
+        Find the right
+        <span>buyer, seller, supplier or market.</span>
+      </h2>
+
+      <p class="hero-description">
+        Tell PiNexusCommerce what you want to buy, sell, source,
+        compare or research. The AI understands your requirement
+        and helps you discover relevant public sources.
+      </p>
+
+    </section>
+
+
+    <!-- =========================
+         SEARCH CARD
+    ========================== -->
+    <section class="search-card">
+
+      <div class="section-label">
+        <span>01</span>
+        Your Commerce Requirement
+      </div>
+
+      <label for="commerceQuery">
+        What are you looking for?
+      </label>
+
+      <textarea
+        id="commerceQuery"
+        name="commerceQuery"
+        rows="4"
+        placeholder="Example: I want to source 500 cotton T-shirts from India for resale in the USA."
+        autocomplete="off"
+      ></textarea>
+
+
+      <!-- ROLE -->
+      <div class="form-group">
+
+        <label for="userRole">
+          Your role
+        </label>
+
+        <select id="userRole">
+
+          <option value="">
+            Let AI understand my role
+          </option>
+
+          <option value="buyer">
+            Buyer / Customer
+          </option>
+
+          <option value="wholesale-buyer">
+            Wholesale Buyer
+          </option>
+
+          <option value="reseller">
+            Reseller
+          </option>
+
+          <option value="seller">
+            Seller
+          </option>
+
+          <option value="supplier">
+            Supplier
+          </option>
+
+          <option value="manufacturer">
+            Manufacturer
+          </option>
+
+          <option value="buyer-seller">
+            Buyer + Seller
+          </option>
+
+          <option value="international-trader">
+            International Trader
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- LOCATION -->
+      <div class="two-column">
+
+        <div class="form-group">
+
+          <label for="sourceLocation">
+            Source / Supplier Location
+          </label>
+
+          <input
+            id="sourceLocation"
+            type="text"
+            placeholder="Example: India"
+            autocomplete="off"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="destinationLocation">
+            Destination Market
+          </label>
+
+          <input
+            id="destinationLocation"
+            type="text"
+            placeholder="Example: USA"
+            autocomplete="off"
+          >
+
+        </div>
+
+      </div>
+
+
+      <!-- SEARCH BUTTON -->
+      <button
+        id="searchButton"
+        class="primary-button"
+        type="button"
+      >
+        <span>🔎</span>
+        Search Real Commerce Sources
+      </button>
+
+      <p class="search-note">
+        PiNexusCommerce uses available public information.
+        It does not create or invent suppliers, buyers, products,
+        prices or transactions.
+      </p>
+
+    </section>
+
+
+    <!-- =========================
+         AI UNDERSTANDING
+    ========================== -->
+    <section
+      id="understandingSection"
+      class="result-section hidden"
+    >
+
+      <div class="section-label">
+        <span>02</span>
+        AI Understanding
+      </div>
+
+      <div class="understanding-card">
+
+        <div class="loading-indicator hidden" id="understandingLoading">
+          <span class="spinner"></span>
+          Understanding your requirement...
+        </div>
+
+        <div id="understandingContent">
+
+          <p class="empty-message">
+            Your requirement will appear here after search.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SEARCH RESULTS
+    ========================== -->
+    <section
+      id="resultsSection"
+      class="result-section hidden"
+    >
+
+      <div class="section-heading-row">
+
+        <div class="section-label">
+          <span>03</span>
+          Public Commerce Sources
+        </div>
+
+        <div id="resultCount" class="result-count">
+          0 sources
+        </div>
+
+      </div>
+
+
+      <div
+        id="resultsContainer"
+        class="results-container"
+      >
+
+        <div class="empty-message">
+          Real public sources will appear here.
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ANALYSIS REQUEST
+    ========================== -->
+    <section
+      id="analysisSection"
+      class="analysis-section hidden"
+    >
+
+      <div class="analysis-card">
+
+        <div class="analysis-icon">
+          🤖
+        </div>
+
+        <div>
+
+          <h3>
+            Would you like a detailed analysis?
+          </h3>
+
+          <p>
+            AI can analyze publicly available information,
+            where available, including product details,
+            source information and market considerations.
+          </p>
+
+          <div class="analysis-actions">
+
+            <button
+              id="analysisYes"
+              class="primary-button small-button"
+              type="button"
+            >
+              Yes, Show Analysis
+            </button>
+
+            <button
+              id="analysisNo"
+              class="secondary-button small-button"
+              type="button"
+            >
+              No, Not Now
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         AI ANALYSIS
+    ========================== -->
+    <section
+      id="analysisResultSection"
+      class="result-section hidden"
+    >
+
+      <div class="section-label">
+        <span>04</span>
+        AI Commerce Analysis
+      </div>
+
+      <div
+        id="analysisResult"
+        class="analysis-result"
+      >
+
+        <p class="empty-message">
+          Detailed analysis will appear here when requested.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SOURCE GATEWAY
+    ========================= -->
+    <section
+      id="sourceGateway"
+      class="gateway-section hidden"
+    >
+
+      <div class="gateway-card">
+
+        <div class="gateway-icon">
+          🌐
+        </div>
+
+        <div>
+
+          <h3>
+            Continue on the Original Website
+          </h3>
+
+          <p>
+            PiNexusCommerce is a discovery and research gateway.
+            When a real source is available, you can continue
+            directly on its original website.
+          </p>
+
+          <a
+            id="originalWebsiteLink"
+            class="primary-button gateway-button"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open Original Website
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         REALITY-FIRST NOTICE
+    ========================== -->
+    <section class="reality-notice">
+
+      <div class="notice-icon">
+        ✓
+      </div>
+
+      <div>
+
+        <h3>
+          Reality-First Commerce
+        </h3>
+
+        <p>
+          PiNexusCommerce does not invent commercial information.
+          Results are based on available public sources or
+          information provided by the user.
+        </p>
+
+        <p>
+          Prices, availability, shipping costs, market conditions
+          and other commercial information may change.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PI ECOSYSTEM NOTICE
+    ========================== -->
+    <section class="pi-notice">
+
+      <div class="pi-symbol">
+        π
+      </div>
+
+      <div>
+
+        <h3>
+          Pi Ecosystem
+        </h3>
+
+        <p>
+          Pi is the intended primary payment ecosystem for
+          PiNexusCommerce. Official Pi integration and payment
+          verification will be added in the dedicated integration
+          stage.
+        </p>
+
+        <p class="small-note">
+          No payment is considered completed unless confirmed
+          through the official Pi payment mechanism.
+        </p>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+  <footer class="site-footer">
+
+    <div>
+      <strong>PiNexusCommerce Cloud</strong>
+      <span> • </span>
+      Global Commerce Discovery Gateway
+    </div>
+
+    <div class="footer-note">
+      AI advises. You make the final decision.
+    </div>
+
+  </footer>
+
+
+  <!-- Frontend logic will be connected in the next stage -->
+  <script src="/app.js"></script>
+
+</body>
+      </html>
